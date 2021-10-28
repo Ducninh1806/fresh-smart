@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Login />
+        <Login @next-page="nextPage"/>
     </div>
 </template>
 <script>
@@ -15,7 +15,11 @@ export default {
         }
     },
     created () {
-        console.log('1111111111111111111')
+    },
+    methods: {
+        nextPage () {
+            this.$router.push({name: "Home"})
+        }
     }
 }
 </script>

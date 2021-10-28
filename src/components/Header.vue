@@ -229,14 +229,17 @@
 										<div class="item">
 											<a href="#" title="Log in to your customer account"><i class="fa fa-cog"></i>My Account</a>
 										</div>
-										<div class="item">
+										<div class="item" v-if="!isAuthen">
 											<router-link to='/login'><i class="fa fa-sign-in"></i>Login</router-link>
 											<!-- <a href="login.html" title="Log in to your customer account"><i class="fa fa-sign-in"></i>Login</a> -->
 										</div>
-										<div class="item">
+										<div class="item" v-if="!isAuthen">
 											<router-link to='/register'><i class="fa fa-user"></i>Register</router-link>
 
 											<!-- <a href="user-register.html" title="Register Account"><i class="fa fa-user"></i>Register</a> -->
+										</div>
+										<div class="item" v-if="isAuthen">
+											<a title="Logout" @click="logout"><i class="fa fa-sign-out"></i>Logout</a>
 										</div>
 										<div class="item">
 											<a href="#" title="My Wishlists"><i class="fa fa-heart"></i>My Wishlists</a>
@@ -265,13 +268,28 @@
 			</header>	
 </template>
 <script>
+import { currentUser } from '../service/auth_header'
 export default {
     name: 'Header',
     data(){
         return{
-
+			isLogin: null,
         }
-    }
+    },
+	created() {
+
+	},
+	methods:{
+		async logout() {
+			await this.$store.dispatch("auth/logout");
+			this.$router.push({name: "Home"})
+		}
+	},
+	computed: {
+		isAuthen(){
+			return this.$store.getters['auth/getCurrentUser']
+		}
+	}
 }
 </script>
 <style >

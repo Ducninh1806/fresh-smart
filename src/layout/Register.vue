@@ -22,25 +22,30 @@
 								<h2 class="title"><span>Create Account</span></h2>
 							</div>
 						
-							<form action="#" method="post" enctype="multipart/form-data">
+							<form enctype="multipart/form-data" @submit.prevent="handleRegister">
 								<div class="form-group">
 									<label>First Name</label>
-									<input type="text" value="" name="first_name">
+									<input v-model="user.firstName" type="text" name="firstName">
 								</div>
 								
 								<div class="form-group">
 									<label>Last Name</label>
-									<input type="text" value="" name="last_name">
+									<input type="text" v-model="user.lastName" name="lastName">
 								</div>
 								
 								<div class="form-group">
 									<label>Email</label>
-									<input type="email" value="" name="email">
+									<input type="email" v-model="user.email" name="email">
+								</div>
+
+								<div class="form-group">
+									<label>Username</label>
+									<input type="text" v-model="user.username" name="username">
 								</div>
 								
 								<div class="form-group">
 									<label>Password</label>
-									<input type="password" value="" name="password">
+									<input type="password" v-model="user.password" name="password">
 								</div>
 								
 								<div class="form-group text-center">
@@ -54,13 +59,32 @@
     </div>
 </template>
 <script>
+import User from '../models/user'
 export default {
     name: "Register",
     data(){
         return {
-            
+            user: new User(),
+			loading: false,
         }
-    }
+    },
+
+	created(){
+
+	},
+	
+	computed: {
+
+	},
+
+	methods: {
+		async handleRegister(){
+			const res =await this.$store.dispatch('auth/register', this.user);
+			if (res.status == 200) {
+				this.$router.push({path: "/login"})
+			}
+		}
+	}
 }
 </script>
 <style scoped>

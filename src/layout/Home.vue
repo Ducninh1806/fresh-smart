@@ -1,5 +1,4 @@
 <template>
-    <div>
       	<!-- Main Content -->
 			<div id="content" class="site-content">				
 				<!-- Slideshow -->
@@ -3326,7 +3325,6 @@
 					</div>
 				</div>
 			</div>
-    </div>
 </template>
 <script>
 export default {
@@ -3335,7 +3333,13 @@ export default {
         return {
 
         }
-    }
+    },
+	created () {
+		console.log('createdddd')
+	},
+	updated () {
+		console.log('render 2')
+	}
 }
 </script>
 <style>

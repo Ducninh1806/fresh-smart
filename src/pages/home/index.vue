@@ -1,7 +1,5 @@
 <template >
-    <div>
-        <LayoutHome />
-    </div>
+    <LayoutHome />
 </template>
 <script>
 import LayoutHome from '../../layout/Home.vue'

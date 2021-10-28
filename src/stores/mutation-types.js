@@ -1,0 +1,2 @@
+export const GET_AUTHEN = 'GET_AUTHEN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'

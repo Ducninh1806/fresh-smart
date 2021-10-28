@@ -3,7 +3,7 @@
     <div class="home home-4">
         <div id="all">
           <Header />
-          <router-view/>
+          <router-view />
           <Footer/>
         </div>
     </div>
@@ -19,6 +19,15 @@ export default {
   name: 'App',
   components: {
     Header, Footer
+  },
+  created() {
+    const user = localStorage.getItem('user');
+    console.log('123', user)
+  },
+  watch: {
+    '$route.path' (newPath) {
+      console.log('path new', newPath)
+    }
   }
 }
 </script>
